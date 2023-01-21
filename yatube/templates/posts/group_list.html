@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Добро пожаловать в группу: {{ group.title }}   
+{% endblock %}  
+
+{% block content %}
+  <h1>Записи сообщества: <span style="color:blue">{{ group.title }}</span></h1>
+  {% for post in posts %}
+    {% include 'posts/includes/article.html' %}
+    {% if not forloop.last %}<hr>{% endif %}
+  {% endfor %}
+{% endblock %}
