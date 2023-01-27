@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Поиск по сайту  
+{% endblock %}  
+
+{% block content %}
+    <h1>Поиск по записям</h1>
+
+    <div class="card" style="width: 700px;">
+      <div class="card-body">
+
+        <form class="form-inline" action="{% url 'posts:search' %}">
+          <div class="form-row">
+          <input name="q" class="form-control form-control-lg" type="search" 
+            placeholder="Поиск" {% if keyword %}value="{{ keyword }}"{% endif %}>
+          <button class="btn" type="submit">Найти</button>
+          </div>
+        </form>
+        </div>
+      </div>
+
+    <div class="container">
+    <br>
+    {% for post in posts %}
+    <strong>
+        Автор: {{ post.author.get_full_name }}, 
+        Дата публикации: {{ post.pub_date|date:"d M Y" }}, 
+        Группа: {{ post.group.title }}
+    </strong>
+    <p>{{ post.text|linebreaksbr }}</p>
+    <hr>
+    {% endfor %}
+    </div>
+
+{% endblock %}
