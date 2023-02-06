@@ -7,7 +7,7 @@
 {% block content %}
     <h1>Поиск по записям</h1>
 
-    <div class="card" style="width: 700px;">
+    <div class="card" style="width: 50%">
       <div class="card-body">
 
         <form class="form-inline" action="{% url 'posts:search' %}">
@@ -22,15 +22,13 @@
 
     <div class="container">
     <br>
-    {% for post in posts %}
-    <strong>
-        Автор: {{ post.author.get_full_name }}, 
-        Дата публикации: {{ post.pub_date|date:"d M Y" }}, 
-        Группа: {{ post.group.title }}
-    </strong>
-    <p>{{ post.text|linebreaksbr }}</p>
-    <hr>
+    {% for post in page_obj %}
+    {% include 'posts/includes/article.html' %}
+    {% if not forloop.last %}<hr>{% endif %}
     {% endfor %}
+    <div class="d-flex justify-content-center">
+     {% include 'posts/includes/paginator.html' %}
+    </div>
     </div>
 
 {% endblock %}

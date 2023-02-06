@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %}Технологии{% endblock %}
+{% block content %}
+
+<h2 class="text-center">Вот что я чуть-чуть умею</h2>
+<br>
+<br>
+<div class="row d-flex justify-content-center">
+  <div class="col-xl-3 col-lg-4 col-md-6">
+    <div class="card border-secondary mb-3" style="max-width: 18rem;">
+      <div class="card-header">Python</div>
+      <div class="card-body text-secondary">
+        <h5 class="card-title">Уровень: ★ ★ ✰ ✰ ✰</h5>
+        <p class="card-text">Могу писать функции и классы. Умею немного в ООП. Пользовался базовыми
+          библиотеками вроде <b>Pandas</b> или <b>Matolib</b>. Решаю простые
+          задачки на <a href="https://www.codewars.com/users/antoncp" target="_blank">Codewars.</a></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-xl-3 col-lg-4 col-md-6">
+    <div class="card border-info mb-3" style="max-width: 18rem;">
+      <div class="card-header">Django</div>
+      <div class="card-body">
+        <h5 class="card-title">Уровень: ★ ✰ ✰ ✰ ✰</h5>
+        <p class="card-text">В самом начале пути. Удобно, что все «из коробки». Неудобно, что
+          надо долго настраивать даже маленький проект. </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-xl-3 col-lg-4 col-md-6">
+    <div class="card border-secondary mb-3" style="max-width: 18rem;">
+      <div class="card-header">Docker</div>
+      <div class="card-body text-secondary">
+        <h5 class="card-title">Уровень: ★ ✰ ✰ ✰ ✰</h5>
+        <p class="card-text">Могу собрать простой образ, запустить контейнер и задеплоить все
+          на VPS. </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %} 

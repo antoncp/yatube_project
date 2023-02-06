@@ -6,11 +6,14 @@
 
 {% block content %}
   <h1>Последние обновления на сайте</h1>
-  {% for post in posts %}
+  {% for post in page_obj %}
     {% include 'posts/includes/article.html' %}
     {% if post.group %}    
       <a href="{% url 'posts:group_list' post.group.slug %}">все записи группы</a>
     {% endif %} 
     {% if not forloop.last %}<hr>{% endif %}
   {% endfor %}
+  <div class="d-flex justify-content-center">
+    {% include 'posts/includes/paginator.html' %}
+  </div>
 {% endblock %}

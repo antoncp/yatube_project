@@ -17,7 +17,7 @@ class Group(models.Model):
     description = models.TextField(verbose_name='Описание сообщества')
 
     def __str__(self):
-        return str(self.title)
+        return self.title
 
     class Meta:
         verbose_name_plural = 'Группы'
@@ -44,6 +44,9 @@ class Post(models.Model):
         verbose_name='Сообщество'
     )
 
+    def __str__(self):
+        return self.text
+
     class Meta:
-        ordering = ['-pub_date']
+        ordering = ('-pub_date',)
         verbose_name_plural = 'Посты'
