@@ -20,33 +20,45 @@
           Добавить запись
         {% endif %}                          
         </div>
+        {% if form.errors %}
+        {% for field in form %} 
+          {% for error in field.errors %}            
+            <div class="alert alert-danger">
+              {{ error|escape }}
+            </div>
+          {% endfor %}
+        {% endfor %}
+        {% for error in form.non_field_errors %}
+          <div class="alert alert-danger">
+            {{ error|escape }}
+          </div>
+        {% endfor %}
+    {% endif %}
+
         <div class="card-body">        
           <form method="post">
             {% csrf_token %}           
-            <div class="form-group row my-3 p-3">
-              {% if form.errors.text %}   
-              <div class="alert alert-danger" role="alert">
-                {{ form.errors.text|striptags }}  
-              </div>  
-              {% endif %}  
-              <label for="id_text">
-                Текст поста                  
-                <span class="required text-danger" >*</span>                  
+            
+            {% for field in form %} 
+            <div class="form-group row my-3">
+              <label for="{{ field.id_for_label }}">
+                {{ field.label }}
+                  {% if field.field.required %}
+                    <span class="required text-danger">*</span>
+                  {% endif %}
               </label>
-                {{ form.text|addclass:'form-control' }}                
-              <small id="id_text-help" class="form-text text-muted">
-                {{ form.errors.text|default:"Текст нового поста"|striptags }} 
-              </small>              
-            </div>            
-            <div class="form-group row my-3 p-3">
-              <label for="id_group">
-                Группа                  
-              </label>
-                {{ form.group|addclass:'form-control' }} 
-              <small id="id_group-help" class="form-text text-muted">
-                Группа, к которой будет относиться пост
-              </small>
+              {{ field|addclass:'form-control' }} 
+                {% if field.help_text %}
+                  <small 
+                      id="{{ field.id_for_label }}-help"
+                      class="form-text text-muted"
+                  >
+                    {{ field.help_text|safe }}
+                  </small>
+                {% endif %}
             </div>
+            {% endfor %}
+
             <div class="d-flex justify-content-end">
               <button type="submit" class="btn btn-primary">
               {% if is_edit %}
