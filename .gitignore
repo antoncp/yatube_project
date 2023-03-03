@@ -132,3 +132,13 @@ dmypy.json
 .pyre/
 
 start.sh
+
+# Local History for Visual Studio Code
+.history/
+
+.mypy_cache
+
+# папки со статикой и медиа
+static/
+yatube/posts/static/
+yatube/media/

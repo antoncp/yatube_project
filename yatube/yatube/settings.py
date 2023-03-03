@@ -25,7 +25,14 @@ SECRET_KEY = '13y7qqer_ewshoce(jv0mrj^t8igi6ipujv_&j2q7f-48-nhhx'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'localhost',
+    '127.0.0.1',
+    '[::1]',
+    'testserver',
+    'www.antoncp.pythonanywhere.com',
+    'antoncp.pythonanywhere.com',
+]
 
 
 # Application definition
@@ -37,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'sorl.thumbnail',
     'posts.apps.PostsConfig',
     'users.apps.UsersConfig',
     'core.apps.CoreConfig',
@@ -135,3 +143,18 @@ LOGIN_REDIRECT_URL = 'posts:index'
 # Connect filebased.EmailBackend and define folder for emails
 EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
 EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'sent_emails')
+
+
+# Custom csfr-error page
+CSRF_FAILURE_VIEW = 'core.views.csrf_failure'
+
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+    }
+}

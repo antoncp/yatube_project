@@ -1,15 +1,29 @@
+{% load thumbnail %}
 <article>
   <ul>
+    {% if request.resolver_match.url_name != 'profile' %}  
+     <li>  
+        <b>Автор:</b> <a href="{% url 'posts:profile' post.author.username %}">{{ post.author.get_full_name }}</a>
+     </li>
+    {% endif %} 
     <li>
-      Автор: {{ post.author.get_full_name }}
-      <a href="{% url 'posts:profile' post.author.username %}">все посты пользователя</a>
+      <b>Дата публикации</b>: {{ post.pub_date|date:"d E Y" }}
     </li>
-    <li>
-      Дата публикации: {{ post.pub_date|date:"d E Y" }}
-    </li>
+    {% if post.group and not group %}
+      <li>    
+        <b>Группа:</b> <a href="{% url 'posts:group_list' post.group.slug %}">{{ post.group }}</a>
+      </li>
+    {% endif %} 
   </ul>
+  {% thumbnail post.image "960x339" crop="center" upscale=True as im %}
+    <img class="card-img my-2" src="{{ im.url }}">
+  {% endthumbnail %}
   <p>
-    {{ post.text|linebreaksbr }}
+    {% if request.resolver_match.url_name != 'search' %}  
+      {{ post.text| linebreaksbr | truncatewords:30 }}
+    {% else %} 
+      {{ post.text| linebreaksbr }}
+    {% endif %} 
   </p>
   <a href="{% url 'posts:post_detail' post.id %}">подробная информация</a>
 </article>
