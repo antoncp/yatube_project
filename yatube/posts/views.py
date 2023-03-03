@@ -7,7 +7,7 @@ from .forms import CommentForm, PostForm
 from .models import Follow, Group, Post
 
 User = get_user_model()
-NUM_POSTS_PER_PAGE = 10
+NUM_POSTS_PER_PAGE = 7
 
 
 def index(request):
@@ -54,8 +54,11 @@ def search(request):
         page_obj = make_pages(request, post_list)
     else:
         page_obj = None
-    return render(request, "posts/search.html", {"page_obj": page_obj,
-                                                 "keyword": keyword})
+    context = {
+        'page_obj': page_obj,
+        'keyword': keyword,
+    }
+    return render(request, "posts/search.html", context)
 
 
 def post_detail(request, post_id):

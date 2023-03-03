@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Об авторе проекта{% endblock %}
+{% block content %}
+<div class="row">
+  <div class="col-xl-5">
+    <div class='author'>
+      <img src="{% static 'img/workplace.jpg' %}" width="400" height="300" alt="Рабочее место">
+      <br>
+      <p><small><em>
+    Рабочее место автора
+  </em></small></p>
+    </div>
+  </div>
+  <div class="col-xl-7">
+    <h2>Привет, я автор</h2>
+    <p>
+      Это будущий полигон для изучения фреймворка <a href="https://getbootstrap.com/"
+      target="_blank">Bootstrap</a>.
+      <br>Я только пришел в мир программирования и пока умею мало.
+      <br>Уточку ещё не завел, а вот <a href="https://github.com/antoncp" target="_blank">аккаунт на Github</a> уже да.
+    </p>
+  </div>
+</div>
+{% endblock %} 
